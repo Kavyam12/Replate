@@ -1,0 +1,15 @@
+.land{
+    /* width: 100vw;
+    height: 100vh; */
+}
+
+.hero-section {
+    background-image: url("../assets/images/hero.jpg");
+    width: 100vw;
+    height: 100vh;
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-radius: 0 0 50px 50px;
+}

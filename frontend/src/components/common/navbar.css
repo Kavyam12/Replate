@@ -1,0 +1,28 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 99%;
+    background: transparent;
+    padding: 6px 6%;
+    border-radius: 50px;
+    margin: 9px 10px;
+}
+
+.logo{
+    cursor: pointer;
+    width: 160px;
+}
+
+ul{
+    flex: 1;
+    list-style: none;
+    text-align: right;
+}
+
+li{
+    display: inline-block;
+    margin: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}

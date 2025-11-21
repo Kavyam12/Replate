@@ -1,0 +1,26 @@
+.btn {
+    width: 95px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: none;
+    background-color: #d9772b;
+    color: #050505;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.btn-icon {
+    display: flex;
+    align-items: center;
+}
+
+.btn-icon img {
+    width: 20px;
+    height: 22px;
+    object-fit: contain;
+    display: block;
+}

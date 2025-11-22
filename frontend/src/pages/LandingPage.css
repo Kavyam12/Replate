@@ -1,10 +1,8 @@
-.land{
-    /* width: 100vw;
-    height: 100vh; */
-}
+
 
 .hero-section {
     background-image: url("../assets/images/hero.jpg");
+    
     width: 100vw;
     height: 100vh;
     background-size: cover; 
@@ -12,4 +10,43 @@
     background-repeat: no-repeat;
 
     border-radius: 0 0 50px 50px;
+}
+
+/* Mission Section */
+
+.mission{
+    padding: 80px 4%;
+    background-color: #eee7ca;
+}
+
+.mission-headline{
+    text-align: center;
+    font-size: 70px;
+    color: #d9772b;
+    font-weight: 600;
+    margin-bottom: 80px;
+}
+
+.mission-context{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.mission-des{
+    flex: 1;
+    font-size: 29px;
+    text-align: justify;
+    line-height: 36px;
+}
+
+.mission-video{
+    flex: 1;
+}
+
+.mission-video video {
+    width: 100%;
+    border-radius: 15px;
+
 }

@@ -1,0 +1,22 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 260px;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  padding: 30px;
+  margin-top: 70px;
+}
+.dashboard-container {
+    padding: 24px;
+    flex: 1;
+    background: #f5f6fa;
+}

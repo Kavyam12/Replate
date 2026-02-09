@@ -1,0 +1,235 @@
+.orders-container {
+    padding: 30px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.orders-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.orders-header-text h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.orders-header-text p {
+    color: #666;
+    font-size: 14px;
+}
+
+.export-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: white;
+    border: 1px solid #e1e4e8;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.export-btn:hover {
+    background-color: #f8f9fa;
+}
+
+.orders-section-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.orders-table thead {
+    background-color: #ffffff;
+}
+
+.orders-table thead tr th {
+    text-align: left;
+    padding: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.orders-table tbody tr {
+    transition: background 0.1s;
+}
+
+.orders-table tbody tr:hover {
+    background-color: #fcfcfc;
+}
+
+.orders-table td {
+    padding: 20px;
+    vertical-align: middle;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #f8f9fa;
+    font-weight: 500;
+}
+
+.orders-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Status Badges specific to Orders */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+    text-transform: capitalize;
+}
+
+.status-badge.completed,
+.status-badge.delivered {
+    background-color: #e6f4ea;
+    color: #1e7e34;
+}
+
+.status-badge.in-progress,
+.status-badge.confirmed,
+.status-badge.placed {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+.status-badge.processing,
+.status-badge.pending {
+    background-color: #fff8e1;
+    color: #f57f17;
+}
+
+.status-badge.cancelled,
+.status-badge.failed {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.status-badge.picked_up {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+
+.status-badge.ready-for-pickup {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+}
+
+
+/* Icons */
+.orders-table td svg {
+    color: #666;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.orders-table td svg:hover {
+    color: #1b4332;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .orders-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* Order History Table (Second Table) */
+.order-history-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+.order-history-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.order-history-table thead {
+    background-color: #ffffff;
+}
+
+.order-history-table thead tr th {
+    text-align: left;
+    padding: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.order-history-table tbody tr {
+    transition: background 0.1s;
+}
+
+.order-history-table tbody tr:hover {
+    background-color: #fcfcfc;
+}
+
+.order-history-table td {
+    padding: 20px;
+    vertical-align: middle;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #f8f9fa;
+    font-weight: 500;
+}
+
+.order-history-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Items List in History Table */
+.items-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.items-list li {
+    margin-bottom: 4px;
+    color: #555;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .order-history-table {
+        display: block;
+        overflow-x: auto;
+    }
+}

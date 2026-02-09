@@ -1,0 +1,228 @@
+.foodListing-container {
+    padding: 30px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.food-header {
+    margin-bottom: 30px;
+}
+
+.food-header h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.food-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+.food-form-container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+}
+
+.form-header {
+    margin-bottom: 25px;
+}
+
+.form-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.food-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.input-field label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+
+}
+
+.input-field input::placeholder {
+    color: #a0aec0;
+}
+
+.input-field input:focus {
+    border-color: #1b4332;
+
+}
+
+/* File Input Styling */
+.input-field input[type="file"] {
+    padding: 7px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.input-field input[type="file"]::file-selector-button {
+    margin-right: 12px;
+    border: none;
+    background: #f1f3f4;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: #333;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+
+
+.submit-btn {
+    grid-column: 1 / -1;
+    margin-top: 10px;
+}
+
+.submit {
+    background-color: #d9772b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.submit:hover {
+    background-color: #ca6415;
+}
+
+
+.food-list-section {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+
+    max-width: 100%;
+}
+
+.food-list-section-header {
+    margin-bottom: 25px;
+}
+
+.food-list-section-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.food-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.food-table thead tr {
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.food-table th {
+    padding: 15px 10px;
+    font-weight: 500;
+    color: #666;
+    font-size: 13px;
+}
+
+.food-table tbody tr {
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.food-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.food-table td {
+    padding: 15px 10px;
+    vertical-align: middle;
+    color: #333;
+}
+
+.food-image {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.food-image img {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.food-image span {
+    font-weight: 500;
+}
+
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.status-badge.available {
+    background-color: #e6f4ea;
+    color: #1e7e34;
+}
+
+.status-badge.reserved {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+@media (max-width: 768px) {
+    .food-form {
+        grid-template-columns: 1fr;
+    }
+
+    .food-table {
+        display: block;
+        overflow-x: auto;
+    }
+}

@@ -1,6 +1,8 @@
 package com.replate.backendreplate.Model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.cglib.core.Local;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
@@ -36,6 +38,10 @@ public class FoodListing {
 
     @Column(nullable = true)
     private String imageUrl;
+
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
     public String getImageUrl() {
         return imageUrl;
@@ -99,5 +105,13 @@ public class FoodListing {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

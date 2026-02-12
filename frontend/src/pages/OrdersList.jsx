@@ -1,15 +1,48 @@
-import React, {useState} from 'react'
-import { mockOrders, mockOrderHistory } from '../data/mockdata'
+import React, {useState, useEffect} from 'react'
+
 import {
   Eye,
   CircleCheckBig
 } from 'lucide-react'
 
 import './OrdersList.css'
+import springconfig from '../api/api'
 
 const OrdersList = () => {
 
-  const [activeFoods, setActiveFoods] = useState(mockOrders);
+  const [activeFoods, setActiveFoods] = useState([]);
+  const [orderHistory, setOrderHistory] = useState([]);
+
+  useEffect(() => {
+    fetchCurrentOrders();
+    fetchOrderHistory();
+  }, [])
+
+  const fetchCurrentOrders = async () => {
+    try{
+      const resp = await springconfig.get("/donor/orders/current");
+      setActiveFoods(resp.data);
+      console.log(resp.data);
+    } catch (error){
+      console.error("Failed to fetch the Current orders", error);
+    }
+  };
+  
+  const fetchOrderHistory = async () => {
+    try{
+      const res = await springconfig.get("/donor/orders/history");
+      setOrderHistory(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.error("Failed to fetch the order history", error);
+    }
+  };
+
+  const formatDateTime = (value) => {
+    if (!value) return "-";
+    return new Date(value).toLocaleString();
+  };
+
   return (
     <div className="orders-container">
 
@@ -30,33 +63,38 @@ const OrdersList = () => {
             <th>Quantity</th>
             <th>Buyer</th>
             <th>Status</th>
+            <th>Date and Time</th>
             <th>Actions</th>
           </tr>
         </thead>
 
         <tbody>
-          {mockOrders.map(order => (
-            <tr key={order.id} >
+          {activeFoods.map(order => (
+            <tr key={order.orderId} >
               <td>
                 {order.orderId}
               </td>
 
               <td>
-                {order.foodItem}
+                {order.foodItemName}
               </td>
 
               <td>
-                {order.quantity}
+                {order.quantity} {order.quantityUnit}
               </td>
 
               <td>
-                {order.buyer}
+                {order.ngoName}
               </td>
 
               <td>
-                <span className={`status-badge ${order.status.toLowerCase()}`}>
+                <span className={`status-badge ${(order.status || '').toLowerCase()}`}>
                   {order.status}
                 </span>
+              </td>
+
+              <td>
+                {formatDateTime(order.createdAt)}
               </td>
 
               <td>
@@ -76,7 +114,7 @@ const OrdersList = () => {
             <tr>
               <th>Order ID</th>
               <th>Order Date</th>
-              <th>Restaurant Name</th>
+              {/* <th>Restaurant Name</th> */}
               <th>NGO Name</th>
               <th>Items</th>
               <th>Total Amount</th>
@@ -88,33 +126,28 @@ const OrdersList = () => {
           </thead>
 
           <tbody>
-            {mockOrderHistory.map (history => (
-              <tr key={history.id}>
+            {orderHistory.map (history => (
+              <tr key={history.orderId}>
 
                 <td>
-                  {history.id}
+                  {history.orderId}
                 </td>
 
                 <td>
-                  {history.orderDate}
+                  {formatDateTime(history.orderDate)}
                 </td>
 
-                <td>
+                {/* <td>
                   {history.restaurantName}
-                </td>
+                </td> */}
 
                 <td>
                   {history.ngoName}
                 </td>
 
                 <td>
-                  <ul className="items-list">
-                    {history.items.map((item, index) => (
-                      <li key={index}>
-                        {item.name} × {item.quantity}
-                      </li>
-                    ))}
-                  </ul>
+                  
+                    {history.itemSummary}
                 </td>
 
                 <td>
@@ -122,8 +155,8 @@ const OrdersList = () => {
                 </td>
 
                 <td>
-                  <span className={`status-badge ${history.status.toLowerCase()}`}>
-                    {history.status}
+                  <span className={`status-badge ${(history.orderStatus || '').toLowerCase()}`}>
+                    {history.orderStatus}
                   </span>
                 </td>
 
@@ -136,7 +169,7 @@ const OrdersList = () => {
                 </td>
 
                 <td>
-                  {history.volunteer}
+                  {history.volunteerName}
                 </td>
               </tr>
             ))}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import "./Login.css"
 import { useNavigate, Link } from 'react-router-dom'
+import springconfig from '../api/api';
 
 
 
@@ -11,11 +12,31 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
       e.preventDefault();
 
-      console.log(email, password);
-      navigate("/");
+      try{
+        const resp = await springconfig.post("/auth/login", {
+          email: email,
+          password: password
+        });
+
+        const role = resp.data.role;
+
+        if (role === "RESTAURANT"){
+          navigate("/donor");
+        } else if (role === "NGO"){
+          navigate("/ngo");
+        } else if (role === "VOLUNTEER"){
+          navigate("/volunteer");
+        } else {
+          console.error("Unknown role of the user", role);
+        }
+        
+      } catch (error) {
+        console.error("Unable to Login User");
+      }
+      
       
   }
   return (

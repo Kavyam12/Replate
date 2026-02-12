@@ -28,7 +28,7 @@ const Topbar = () => {
                 <span className="notification-badge"></span>
             </button>
 
-            <div className="user-profile">
+            <div className="user-profile" >
                 <img src={user.imageUrl} alt="profile-pic" className='avatar' />
 
                 <div className="user-info">

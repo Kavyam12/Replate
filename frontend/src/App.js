@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import Navbar from "./components/common/navbar.jsx";
+
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import { useLocation } from 'react-router-dom';
+
 import ProtectedRoute from './routes/ProtectedRoute';
 import Login from './pages/Login.jsx';
 import Registration from './pages/Registration';
@@ -45,16 +45,16 @@ function Layout() {
             <Route path='/registration' element={<Registration />} />
           </Route>
 
-          {/* <Route element={<ProtectedRoute />}> */}
-          <Route  path='/donor' element = {<DonorDashboardLayout />}>
-              <Route index element={<DonorDashboard />} />
-              <Route path='/donor/food-listing' element = {<FoodListing />} />
-              <Route path='/donor/orders' element = {<OrdersList />} />
-              <Route path='/donor/sales' element = {<Salespage />} />
-              {/* <Route path='/donor/orderHistory' element = {<OrderHistory />} /> */}
-              <Route path='/donor/me' element = {<Settings />} />
+          <Route element={<ProtectedRoute />}>
+            <Route  path='/donor' element = {<DonorDashboardLayout />}>
+                <Route index element={<DonorDashboard />} />
+                <Route path='food-listing' element = {<FoodListing />} />
+                <Route path='orders' element = {<OrdersList />} />
+                <Route path='sales' element = {<Salespage />} />
+                {/* <Route path='/donor/orderHistory' element = {<OrderHistory />} /> */}
+                <Route path='me' element = {<Settings />} />
+            </Route>
           </Route>
-          {/* </Route> */}
 
         </Routes>
       </div>

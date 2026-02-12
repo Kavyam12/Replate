@@ -2,26 +2,14 @@ import axios from "axios";
 
 const springconfig = axios.create({
     baseURL: "http://localhost:8080",
-    withCredentials: false,
+    withCredentials: true,
 });
-
-springconfig.interceptors.request.use(
-    (req) => {
-        const token = localStorage.getItem("token");
-
-        if (token) {
-            req.headers.Authorization = `Bearer ${token}`;
-        }
-        return req;
-    },
-    (error) => Promise.reject(error)
-);
 
 springconfig.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response?.status === 401) {
-            console.warn("Unauthorized - token may be invalid");
+            console.warn("Unauthorized - authentication cookie missing or expired");
         }
         return Promise.reject(error);
     }

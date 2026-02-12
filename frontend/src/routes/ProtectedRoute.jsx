@@ -1,14 +1,18 @@
-import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import springconfig from "../api/api";
 
-const ProtectedRoute = () => {
-  const isAuthenticated = localStorage.getItem("isLoggedIn") === "true";
+export default function ProtectedRoute() {
 
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
+    const [authenticated, setAuthenticated] = useState(null);
 
-  return <Outlet />;
-};
+    useEffect(() => {
+        springconfig.get("/auth/me")
+            .then(() => setAuthenticated(true))
+            .catch(() => setAuthenticated(false));
+    }, []);
 
-export default ProtectedRoute;
+    if (authenticated === null) return <div>Checking authentication...</div>;
+
+    return authenticated ? <Outlet /> : <Navigate to="/login" replace />;
+}

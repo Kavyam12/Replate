@@ -35,6 +35,7 @@ function Login() {
         
       } catch (error) {
         console.error("Unable to Login User");
+        alert("Email ID or Password is Invalid !!");
       }
       
       

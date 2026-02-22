@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import ProtectedRoute from './routes/ProtectedRoute';
 import Login from './pages/Login.jsx';
@@ -17,12 +17,20 @@ import FoodListing from './pages/FoodListing.jsx';
 import OrdersList from './pages/OrdersList.jsx';
 import Salespage from './pages/Salespage.jsx';
 // import OrderHistory from './pages/OrderHistory.jsx';
-import  Settings  from './pages/Settings.jsx';
+import Settings from './pages/Settings.jsx';
+import { UserProvider } from './Context/UserContext.jsx';
+import NgoLayout from './Layouts/NgoLayout.jsx';
+import NgoCart from './pages/NgoCart.jsx';
+import NgoHistory from './pages/NgoHistory.jsx';
+import NgoProfile from './pages/NgoProfile.jsx';
+import NgoCheckout from './pages/NgoCheckout.jsx';
 
 function App() {
   return (
     <Router>
-      <Layout />
+      <UserProvider>
+        <Layout />
+      </UserProvider>
     </Router>
   );
 }
@@ -36,23 +44,34 @@ function Layout() {
       <div className="content">
         <Routes>
 
-          <Route element = {<PublicLayout />}>
+          <Route element={<PublicLayout />}>
             <Route path='/' element={<LandingPage />} />
           </Route>
 
-          <Route element = {<AuthLayout />}>
+          <Route element={<AuthLayout />}>
             <Route path='/login' element={<Login />} />
             <Route path='/registration' element={<Registration />} />
           </Route>
 
           <Route element={<ProtectedRoute />}>
-            <Route  path='/donor' element = {<DonorDashboardLayout />}>
-                <Route index element={<DonorDashboard />} />
-                <Route path='food-listing' element = {<FoodListing />} />
-                <Route path='orders' element = {<OrdersList />} />
-                <Route path='sales' element = {<Salespage />} />
-                {/* <Route path='/donor/orderHistory' element = {<OrderHistory />} /> */}
-                <Route path='me' element = {<Settings />} />
+            <Route path='/donor' element={<DonorDashboardLayout />}>
+              <Route index element={<DonorDashboard />} />
+              <Route path='food-listing' element={<FoodListing />} />
+              <Route path='orders' element={<OrdersList />} />
+              <Route path='sales' element={<Salespage />} />
+              {/* <Route path='/donor/orderHistory' element = {<OrderHistory />} /> */}
+              <Route path='me' element={<Settings />} />
+            </Route>
+
+
+
+
+            <Route path='/ngo' element={<NgoLayout />}>
+              <Route index element={<NgoDashboard />} />
+              <Route path='cart' element={<NgoCart />} />
+              <Route path='checkout' element={<NgoCheckout />} />
+              <Route path='history' element={<NgoHistory />} />
+              <Route path='me' element={<NgoProfile />} />
             </Route>
           </Route>
 

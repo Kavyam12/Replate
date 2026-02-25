@@ -4,13 +4,11 @@ package com.replate.backendreplate.Model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "users")
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+
 public class User {
 
     @Id
@@ -32,6 +30,21 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = true)
+    private VerificationStatus verificationStatus;
+
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    private void prePersist() {
+        this.createdAt = LocalDateTime.now();
+        if (this.verificationStatus == null) {
+            this.verificationStatus = VerificationStatus.PENDING;
+        }
+    }
 
     public Long getId() {
         return id;
@@ -79,5 +92,21 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public VerificationStatus getVerificationStatus() {
+        return verificationStatus;
+    }
+
+    public void setVerificationStatus(VerificationStatus verificationStatus) {
+        this.verificationStatus = verificationStatus;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

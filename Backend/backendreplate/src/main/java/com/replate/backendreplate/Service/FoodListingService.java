@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,6 +72,18 @@ public class FoodListingService {
                 .collect(Collectors.toList());
     }
 
+    public List<FoodListingResponse> getAvailableFoodForNgo(){
+        List<FoodListing> listings = foodListingRepo.findByStatus(Status.AVAILABLE);
+
+        List<FoodListingResponse> responses = new ArrayList<>();
+
+        for (FoodListing listing : listings){
+            responses.add(mapToResponseNgo(listing));
+        }
+
+        return responses;
+    }
+
     private FoodListingResponse mapToResponse (FoodListing listing){
 
         FoodListingResponse response = new FoodListingResponse();
@@ -80,6 +93,25 @@ public class FoodListingService {
         response.setDeadline(listing.getDeadline());
         response.setStatus(listing.getStatus());
         response.setImage(listing.getImageUrl());
+
+        return response;
+    }
+
+    private FoodListingResponse mapToResponseNgo (FoodListing listing){
+
+        FoodListingResponse response = new FoodListingResponse();
+        response.setFoodName(listing.getFoodName());
+        response.setQuantity(listing.getQuantity());
+        response.setPrice(listing.getPrice());
+        response.setDeadline(listing.getDeadline());
+        response.setStatus(listing.getStatus());
+        response.setImage(listing.getImageUrl());
+
+        response.setRestaurantName(
+                listing.getRestaurant().getName()
+        );
+
+        response.setId(listing.getId());
 
         return response;
     }

@@ -1,0 +1,233 @@
+.vol-dash-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* Header */
+.vol-dash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.vol-dash-header h1 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin: 0 0 6px 0;
+}
+
+.vol-dash-header p {
+    color: #95a5a6;
+    font-size: 15px;
+    margin: 0;
+}
+
+/* Active / Inactive button */
+.vol-status-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.4px;
+    transition: background-color 0.25s, box-shadow 0.25s, transform 0.15s;
+}
+
+.vol-status-btn.active {
+    background-color: #d9772b;
+    color: white;
+    box-shadow: 0 4px 16px rgba(217, 119, 43, 0.35);
+}
+
+.vol-status-btn.active:hover {
+    background-color: #bf6520;
+    transform: translateY(-1px);
+}
+
+.vol-status-btn.inactive {
+    background-color: #ecf0f1;
+    color: #7f8c8d;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.vol-status-btn.inactive:hover {
+    background-color: #dfe4ea;
+    transform: translateY(-1px);
+}
+
+.vol-status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.vol-status-btn.active .vol-status-dot {
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.vol-status-btn.inactive .vol-status-dot {
+    background-color: #bdc3c7;
+}
+
+/* Section */
+.vol-section {
+    background: white;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.vol-section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    color: #2c3e50;
+}
+
+.vol-section-title svg {
+    color: #d9772b;
+}
+
+.vol-section-title h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+/* Task list */
+.vol-task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.vol-task-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    border-radius: 10px;
+    border: 1px solid #edf0f2;
+    background: #fafbfc;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.vol-task-card:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+    transform: translateY(-2px);
+}
+
+.vol-task-card.completed {
+    opacity: 0.75;
+}
+
+.vol-task-main h3 {
+    margin: 0 0 6px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.vol-task-location {
+    margin: 0;
+    font-size: 13px;
+    color: #7f8c8d;
+}
+
+.vol-task-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.vol-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #95a5a6;
+}
+
+.vol-meta-item svg {
+    flex-shrink: 0;
+}
+
+/* Status badges */
+.vol-status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-inprogress {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+.status-pending {
+    background-color: #fff8e1;
+    color: #f57f17;
+}
+
+.status-completed {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* Empty state */
+.vol-empty {
+    text-align: center;
+    padding: 30px;
+    color: #bdc3c7;
+    font-size: 15px;
+}
+/* Action buttons */
+.vol-task-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.vol-action-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.vol-action-btn.accept {
+    background-color: #d9772b;
+    color: white;
+}
+
+.vol-action-btn.accept:hover {
+    background-color: #bf6520;
+}
+
+.vol-action-btn.complete {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.vol-action-btn.complete:hover {
+    background-color: #27ae60;
+}
+
+.vol-action-btn:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}

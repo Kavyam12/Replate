@@ -8,6 +8,8 @@ import Login from './pages/Login.jsx';
 import Registration from './pages/Registration';
 import DonorDashboard from './pages/DonorDashboard.jsx';
 import VolunteerDashboard from './pages/VolunteerDashboard';
+import VolunteerProfile from './pages/VolunteerProfile';
+import VolunteerLayout from './Layouts/VolunteerLayout';
 import NgoDashboard from './pages/NgoDashboard';
 import LandingPage from './pages/LandingPage.jsx';
 import PublicLayout from './Layouts/PublicLayout.jsx';
@@ -72,6 +74,11 @@ function Layout() {
               <Route path='checkout' element={<NgoCheckout />} />
               <Route path='history' element={<NgoHistory />} />
               <Route path='me' element={<NgoProfile />} />
+            </Route>
+
+            <Route path='/volunteer' element={<VolunteerLayout />}>
+              <Route index element={<VolunteerDashboard />} />
+              <Route path='me' element={<VolunteerProfile />} />
             </Route>
           </Route>
 

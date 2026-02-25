@@ -9,12 +9,22 @@ import java.time.LocalDateTime;
 
 public class FoodListingResponse {
 
+    private Long id;
     private String foodName;
     private Long quantity;
     private BigDecimal price;
     private LocalDateTime deadline;
     private Status status;
     private String image;
+    private String restaurantName;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getFoodName() {
         return foodName;
@@ -62,5 +72,13 @@ public class FoodListingResponse {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
     }
 }

@@ -10,8 +10,13 @@ import com.replate.backendreplate.dto.RegisterRequest;
 import com.replate.backendreplate.dto.UserResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.replate.backendreplate.Model.Volunteer;
+import com.replate.backendreplate.Repository.VolunteerRepository;
+import com.replate.backendreplate.Model.Role;
 
 @Service
 public class AuthService {
@@ -25,9 +30,15 @@ public class AuthService {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @Autowired
+    private VolunteerRepository volunteerRepository;
+
+    @Value("${app.defaults.volunteer-image-url}")
+    private String DEFAULT_IMAGE_URL;
+
     public UserResponse register(@Valid RegisterRequest registerRequest) {
 
-        if (userRepository.existsByEmail(registerRequest.getEmail())){
+        if (userRepository.existsByEmail(registerRequest.getEmail())) {
             throw new RuntimeException("Email already exists");
         }
 
@@ -40,6 +51,13 @@ public class AuthService {
 
         User savedUser = userRepository.save(user);
 
+        if (savedUser.getRole() == Role.VOLUNTEER) {
+            Volunteer volunteer = new Volunteer();
+            volunteer.setVolunteerOwner(savedUser);
+            volunteer.setImageUrl(DEFAULT_IMAGE_URL);
+            volunteerRepository.save(volunteer);
+        }
+
         UserResponse userResponse = new UserResponse();
         userResponse.setUserid(savedUser.getId());
         userResponse.setEmail(savedUser.getEmail());
@@ -50,11 +68,12 @@ public class AuthService {
 
     }
 
-    public LoginResponse login(@Valid LoginRequest loginRequest){
+    public LoginResponse login(@Valid LoginRequest loginRequest) {
 
-        User user = userRepository.findByEmail(loginRequest.getEmail()).orElseThrow(() -> new RuntimeException("Email or password is incorrect"));
+        User user = userRepository.findByEmail(loginRequest.getEmail())
+                .orElseThrow(() -> new RuntimeException("Email or password is incorrect"));
 
-        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())){
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
             throw new RuntimeException("Invalid Password");
         }
 
@@ -65,8 +84,6 @@ public class AuthService {
         response.setEmail(user.getEmail());
         response.setRole(user.getRole());
         response.setToken(token);
-
-
 
         return response;
 

@@ -38,6 +38,10 @@ public class Orders {
 
     private LocalDateTime createdAt;
 
+    @ManyToOne
+    @JoinColumn(name = "volunteer_id")
+    private User volunteer;
+
     public Orders() {
     }
 
@@ -168,5 +172,13 @@ public class Orders {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public User getVolunteer() {
+        return volunteer;
+    }
+
+    public void setVolunteer(User volunteer) {
+        this.volunteer = volunteer;
     }
 }

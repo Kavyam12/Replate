@@ -6,6 +6,8 @@ import com.replate.backendreplate.dto.CreateRestaurantRequest;
 import com.replate.backendreplate.dto.RestaurantProfileResponse;
 import com.replate.backendreplate.dto.RestaurantProfilerequest;
 import com.replate.backendreplate.dto.RestaurantResponse;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +42,19 @@ public class RestaurantController {
     ) {
         User user = (User) authentication.getPrincipal();
         restaurantService.updateProfile(user, request);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletResponse httpServletResponse){
+        Cookie cookie = new Cookie("auth_token", null);
+        cookie.setHttpOnly(true);
+        cookie.setSecure(false);
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+
+        httpServletResponse.addCookie(cookie);
+
         return ResponseEntity.ok().build();
     }
 }

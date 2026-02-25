@@ -2,8 +2,7 @@ package com.replate.backendreplate.Model;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.cglib.core.Local;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
